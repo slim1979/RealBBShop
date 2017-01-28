@@ -1,6 +1,16 @@
+# encoding: cp866
+
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+
+def new_user
+
+	new_user = File.open "users_list.txt","a"
+	new_user.write "Клиент #{@new_user_name} записан на #{@new_user_datetime}. Телефон для связи #{@new_user_phone}. \n"
+	new_user.close
+
+end
 
 configure do
   enable :sessions
@@ -15,13 +25,30 @@ end
 before '/secure/*' do
   unless session[:identity]
     session[:previous_url] = request.path
-    @error = 'Wrong login/password. Sorry, you need to be logged in to visit ' + request.path
+    @error = 'Wrong login/password. Sorry, you need to be logged in to enter ' + request.path
     halt erb(:login_form)
   end
 end
 
 get '/' do
-  erb 'Can you handle a <a href="/secure/place">secret</a>?'
+  erb 'Мы открылись! Спешите <a href="/visit">записаться</a> на прием!'
+end
+
+get '/visit' do
+
+	erb :visit
+
+end
+
+post '/visit' do
+	
+	@new_user_name = params[:new_user_name]
+	@new_user_phone = params[:new_user_phone]
+	@new_user_datetime = params[:new_user_datetime]
+	new_user
+	erb "Уважаемый #{@new_user_name}, мы будем рады видеть Вас #{@new_user_datetime}!"
+	
+
 end
 
 get '/login/form' do
@@ -32,8 +59,8 @@ end
 
 post '/login/attempt' do
 
-	@login = params[:username]
-	@password = params[:user_password]
+		@login = params[:username]
+		@password = params[:user_password]
 	
 	if @login == 'admin' && @password == 'secret'
 		session[:identity] = params[:username]
