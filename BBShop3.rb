@@ -26,7 +26,7 @@ end
 
 helpers do
   def username
-    session[:identity] ? 'Вы вошли как ' + session[:identity] : 'Войдите в кабинет' 
+    session[:identity] ? 'Вы вошли, как ' + session[:identity] : 'Войдите в кабинет' 
   end
 end
 
@@ -34,7 +34,7 @@ before '/cabinet' do
 
 	unless session[:identity]
     session[:previous_url] = request.path
-    @error = 'Для входа в кабинет, пожалуйста, авторизуйтесь'
+    @error = 'Для входа в кабинет необходимо авторизоваться'
     halt erb(:login_form)
   end
 end

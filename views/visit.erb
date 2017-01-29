@@ -10,9 +10,9 @@
 	<h4>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время визита</h4>
 	<form action="/visit" method="POST" role="form">
 
-		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя"><br/>
-		<input type="text" class="form-control" name ="new_user_phone"placeholder="Введите номер телефона"><br/>
-		<input type="text" class="form-control" name ="new_user_datetime" placeholder="Введите дату и время"><br/>
+		<input type="text" id="aaa" class="form-control aaa" name ="new_user_name" placeholder="Введите Ваше имя"><br/>
+		<input type="text" id="aaa" class="form-control aaa" name ="new_user_phone"placeholder="Введите номер телефона"><br/>
+		<input type="text" id="aaa" class="form-control aaa" name ="new_user_datetime" placeholder="Введите дату и время"><br/>
 		<label>Выберите специалиста:</label>
 		<select name="barber" class="form-control">
 			<option>Не важно</option>
@@ -29,7 +29,9 @@
 </body>
 </html>
 
-
+<script type="text/javascript">
+	$('.aaa').css('background-color','yellow');
+</script>
 
 
 
