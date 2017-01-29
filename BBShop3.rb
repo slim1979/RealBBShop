@@ -26,22 +26,20 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
+    session[:identity] ? session[:identity] : 'Войдите в кабинет' 
   end
 end
 
-before '/welcome/*' do
+before '/cabinet' do
 
 	unless session[:identity]
     session[:previous_url] = request.path
-    @error = 'Wrong login/password. Sorry, you need to be logged in to enter ' + request.path
+    @error = 'Для входа в кабинет, пожалуйста, авторизуйтесь'
     halt erb(:login_form)
   end
 end
 
-get '/' do
-	
-	
+get '/' do	
 	erb 'Мы открылись! Спешите <a href="/visit">записаться</a> на прием!'
 end
 
@@ -82,7 +80,7 @@ post '/login/attempt' do
 		new_user = File.open "./public/users_list.txt","r"
 		new_user.read
 		
-		erb :welcome		
+		erb :cabinet		
 	else
 		@message = " Доступ закрыт. Введите правильные логин и пароль."
 		erb :login_form
@@ -90,7 +88,12 @@ post '/login/attempt' do
 	end      
 end
 
-get '/welcome' do
+get '/cabinet' do
+
+	erb :cabinet
+	
+end
+get '/cabinet' do
 
 	new_user.read
 end
