@@ -26,7 +26,7 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Войдите в кабинет' 
+    session[:identity] ? 'Вы вошли как ' + session[:identity] : 'Войдите в кабинет' 
   end
 end
 

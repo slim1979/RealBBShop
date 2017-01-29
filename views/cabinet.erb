@@ -7,7 +7,7 @@
  <frameset rows="80,*" cols="*">
    <frame src="top.html" name="topFrame" scrolling="no" noresize>
 	   <blockquote>
-			<p> Доброго дня, <%= @login %> </p>
+			<p> Доброго дня, <%= session[:identity] %> </p>
 			<p>Сегодня список клиентов <a href="/users_list.txt">такой:</a></p>
 		
 		</blockquote>
