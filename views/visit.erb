@@ -7,26 +7,40 @@
  </head> 
  <body>
 
-	<h3>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время</h3>
+	<h4>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время визита</h4>
 	<form action="/visit" method="POST" role="form">
 
 		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя"><br/>
 		<input type="text" class="form-control" name ="new_user_phone"placeholder="Введите номер телефона"><br/>
 		<input type="text" class="form-control" name ="new_user_datetime" placeholder="Введите дату и время"><br/>
-		<!-- <label>Вы можете выбрать парикмахера, если есть предпочтения:</label> -->
-		<!-- <form action="/visit"> -->
-		    <p><b>Выберите специалиста</b></p>
-			<p><input name="dzen" type="radio" value="Не важно" checked> Не важно</p>
-			<p><input name="dzen" type="radio" value="Катя"> Катя</p>
-			<p><input name="dzen" type="radio" value="Федя"> Федя</p>
-			<p><input name="dzen" type="radio" value="Оля"> Оля</p>
-			<p><input name="dzen" type="radio" value="Зина"> Зина</p>
-			<p><input name="dzen" type="radio" value="Игорь"> Игорь</p>
-			<!-- <p><input type="submit" value="Выбрать"></p> -->
-		<!-- </form>  -->
+		<label>Выберите специалиста:</label>
+		<select name="barber" class="form-control">
+			<option>Не важно</option>
+			<option>Катя</option>
+			<option>Федя</option>
+			<option>Оля</option>
+			<option>Зина</option>
+			<option>Игорь</option>
+		</select><br/>
 		<button type="submit" class="btn btn-success">Записаться</button>
 		
 	</form>
 
 </body>
 </html>
+
+
+
+
+
+<!-- <label>Вы можете выбрать парикмахера, если есть предпочтения:</label> -->
+		<!-- <form action="/visit"> -->
+<!-- 		    <p><b>Выберите специалиста</b></p>
+			<p><input name="dzen" type="radio" value="Не важно" checked> Не важно</p>
+			<p><input name="dzen" type="radio" value="Катя"> Катя</p>
+			<p><input name="dzen" type="radio" value="Федя"> Федя</p>
+			<p><input name="dzen" type="radio" value="Оля"> Оля</p>
+			<p><input name="dzen" type="radio" value="Зина"> Зина</p>
+			<p><input name="dzen" type="radio" value="Игорь"> Игорь</p>
+ -->			<!-- <p><input type="submit" value="Выбрать"></p> -->
+		<!-- </form>  -->
