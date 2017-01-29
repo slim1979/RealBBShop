@@ -1,3 +1,18 @@
-<blockquote>
-	<p> This is a secret place that only <h1> <%= session[:identity] %> </h1> has access to! </p>
-</blockquote>
+<!-- <blockquote>
+	<p> Доброго дня, <%= @login %> </p>
+	<p>Сегодня список клиентов <a href="/users_list.txt">такой:</a></p>
+	
+</blockquote> -->
+
+ <frameset rows="80,*" cols="*">
+   <frame src="top.html" name="topFrame" scrolling="no" noresize>
+	   <blockquote>
+			<p> Доброго дня, <%= @login %> </p>
+			<p>Сегодня список клиентов <a href="/users_list.txt">такой:</a></p>
+		
+		</blockquote>
+   <frameset cols="80,*">
+     <frame src="left.html" name="leftFrame" scrolling="no" noresize>
+     <frame src="/users_list.txt" name="mainFrame">
+   </frameset>
+ </frameset>
