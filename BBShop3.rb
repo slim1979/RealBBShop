@@ -40,7 +40,7 @@ before '/cabinet' do
 end
 
 get '/' do	
-	erb 'Мы открылись! Спешите <a href="/visit">записаться</a> на прием!'
+	erb :index
 end
 
 get '/visit' do
