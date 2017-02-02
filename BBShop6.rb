@@ -1,22 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-
+require 'sqlite3'
 
 
 
 
 def new_user	
 	
-	new_user = File.open "./public/users_list.txt","a"
-	
-	if @barber == "Не важно"	
-		new_user.write "Клиент #{@new_user_name} записан на #{@new_user_datetime}. К любому специалисту. Телефон для связи #{@new_user_phone}. \n"
-	else 
-		new_user.write "Клиент #{@new_user_name} записан на #{@new_user_datetime} к специалисту #{@barber}. Телефон для связи #{@new_user_phone}. \n"
-	end
-	new_user.close
-
+	db = SQLite3::Database.new 'BarberShop.db'	
+	db.execute "INSERT INTO clients (Name, Phone, DateStamp, Barber) VALUES ('#{@new_user_name}', '#{@new_user_phone}','#{@new_user_datetime}','#{@barber}')"
+	db.close
 end
 
 
