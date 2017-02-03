@@ -13,12 +13,12 @@
 		<input type="text" id="new_user_datetime" class="form-control aaa" name ="new_user_datetime" placeholder="Введите дату и время" value=<%= @new_user_datetime %>><br/>
 		<label>Выберите специалиста:</label>
 		<select name="barber" class="form-control" >
-			<option>Не важно</option>
-			<option>Катя</option>
-			<option>Федя</option>
-			<option>Оля</option>
-			<option>Зина</option>
-			<option>Игорь</option>
+			<option <%= @barber == "Не важно" ? "selected" : "" %> >Не важно</option>
+			<option <%= @barber == "Катя" ? "selected" : "" %>>Катя</option>
+			<option <%= @barber == "Федя" ? "selected" : "" %>>Федя</option>
+			<option <%= @barber == "Оля" ? "selected" : "" %>>Оля</option>
+			<option <%= @barber == "Зина" ? "selected" : "" %>>Зина</option>
+			<option <%= @barber == "Игорь" ? "selected" : "" %>>Игорь</option>
 		</select><br/>
 		<button type="submit" class="btn btn-success" >Записаться</button>
 		
