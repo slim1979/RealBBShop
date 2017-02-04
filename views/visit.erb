@@ -2,15 +2,26 @@
 <html>
  <head>
  <meta charset="utf-8">
+ 
+ <script type="text/javascript">
+ 
+	$(function() {
+	
+		jQuery('#datetimepicker').datetimepicker();
+		
+		
+	});
+
+</script>
  </head> 
  <body>
 
 	<h4>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время визита</h4>
 	<form action="/visit" class="aaa" method="POST" onsubmit="fnc()" role="form">
 
-		<input type="text" id="new_user_name" class="form-control aaa" name ="new_user_name" placeholder="Введите Ваше имя" value=<%= @new_user_name %>><br/>
-		<input type="text" id="new_user_phone" class="form-control aaa" name ="new_user_phone" placeholder="Введите номер телефона" value=<%= @new_user_phone %>><br/>
-		<input type="text" id="new_user_datetime" class="form-control aaa" name ="new_user_datetime" placeholder="Введите дату и время" value=<%= @new_user_datetime %>><br/>
+		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя" value=<%= @new_user_name %>><br/>
+		<input type="text" class="form-control" name ="new_user_phone" placeholder="Введите номер телефона" value=<%= @new_user_phone %>><br/>
+		<input type="text" id="datetimepicker" class="form-control" name ="new_user_datetime" placeholder="Введите дату и время" value=<%= @new_user_datetime %>><br/>
 		<label>Выберите специалиста:</label>
 		<select name="barber" class="form-control" >
 			<option <%= @barber == "Не важно" ? "selected" : "" %> >Не важно</option>
@@ -23,6 +34,8 @@
 		<button type="submit" class="btn btn-success" >Записаться</button>
 		
 	</form>
+	
+
 
 </body>
 </html>
