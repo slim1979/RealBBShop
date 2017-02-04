@@ -3,19 +3,18 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-
+configure do
+  enable :sessions 
+end
 
 
 def new_user	
 	
 	db = SQLite3::Database.new 'BarberShop.db'	
-	db.execute "INSERT INTO clients (Name, Phone, DateStamp, Barber) VALUES ('#{@new_user_name}', '#{@new_user_phone}','#{@new_user_datetime}','#{@barber}')"
+	db.execute "INSERT INTO 
+				clients (Name, Phone, DateStamp, Barber) 
+				VALUES ('#{@new_user_name}', '#{@new_user_phone}','#{@new_user_datetime}','#{@barber}')"
 	db.close
-end
-
-
-configure do
-  enable :sessions
 end
 
 helpers do
