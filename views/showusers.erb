@@ -1,0 +1,27 @@
+﻿<table class="table table-striped">
+<thead>
+	<tr>
+		<th>#</th>
+		<th>Имя</th>		
+		<th>Телефон</th>
+		<th>Дата и время записи</th>
+		<th>Парикмахер</th>
+	</tr>
+</thead>
+
+<body>
+	<% @results.each do |row| %>
+		
+		<tr>
+			<td><%= row ['id']%></td>
+			<td><%= row ['Name']%></td>		
+			<td><%= row ['Phone']%></td>
+			<td><%= row ['DateStamp']%></td>
+			<td><%= row ['Barber']%></td>
+			
+		</tr>
+
+	<% end %>
+</body>
+
+</table>
