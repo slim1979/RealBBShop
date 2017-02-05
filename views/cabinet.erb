@@ -8,11 +8,6 @@
    <frame src="top.html" name="topFrame" scrolling="no" noresize>
 	   <blockquote>
 			<p> Доброго дня, <%= session[:identity] %> </p>
-			<p>Сегодня список клиентов <a href="/users_list.txt">такой:</a></p>
+			<p>Сегодня список клиентов <a href="/showusers">такой:</a></p>
 		
 		</blockquote>
-   <frameset cols="80,*">
-     <frame src="left.html" name="leftFrame" scrolling="no" noresize>
-     <frame src="/users_list.txt" name="mainFrame">
-   </frameset>
- </frameset>
