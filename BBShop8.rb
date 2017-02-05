@@ -3,45 +3,56 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+
+	db = SQLite3::Database.new 'BarberShop.db'	
+	db.results_as_hash = true
+	return db
+end
+
 configure do
 
   enable :sessions 
   
-  @db = get_db
+  db = get_db
   
 	#каждый раз происходит проверка существует ли таблица clients в базе данных...
 	#если нет, то создается 
-	@db.execute 'CREATE TABLE IF NOT EXISTS
-		clients 
+	db.execute 'CREATE TABLE IF NOT EXISTS
+		"clients"
 		(
 			id        INTEGER  PRIMARY KEY AUTOINCREMENT,
 			Name      VARCHAR,
 			Phone     STRING,
 			DateStamp DATETIME,
 			Barber    VARCHAR
-		)'		
-end
-
-def get_db
-
-	return SQLite3::Database.new 'BarberShop.db'	
+		)'
+		
+	db.execute 'CREATE TABLE IF NOT EXISTS
+		"barbers" 
+		(
+			id        INTEGER  PRIMARY KEY AUTOINCREMENT,
+			Name      VARCHAR			
+		)';			
 	
 end
+
+
 
 def new_user	
 	
-	#db = get_db		
+	db = get_db		
 	#этот закомментированный способ добавления данных является небезопасным
 	#с точки зрения SQL Injections. По этой причине заменен на приведенный ниже.
 	# db.execute "INSERT INTO 
 	# clients (Name, Phone, DateStamp, Barber) 
 	# VALUES ('#{@new_user_name}', '#{@new_user_phone}','#{@new_user_datetime}','#{@barber}')"
 	
-	@db.execute 'INSERT INTO 
+	db.execute 'INSERT INTO 
 				clients (Name, Phone, DateStamp, Barber) 
-				VALUES (? , ? , ? , ? )', [@new_user_name, @new_user_phone, @new_user_datetime, @barber]
+				VALUES (? , ? , ? , ? )', [@new_user_name, @new_user_phone, @new_user_datetime, @barber_for_user]
 				
-	@db.close
+	db.close
 end
 
 helpers do
@@ -65,21 +76,28 @@ get '/' do
 end
 
 get '/visit' do
+	db = get_db
+	@barbers_list = db.execute 'select * from barbers'
 	erb :visit
 end
 
 post '/visit' do
+
+	db = get_db
+	@barbers_list = db.execute 'select * from barbers'
 	
 	@new_user_name = params[:new_user_name]
 	@new_user_phone = params[:new_user_phone]
 	@new_user_datetime = params[:new_user_datetime]
-	@barber = params[:barber]
+	@barber_for_user = params[:barber]
 	
 	#======код для обработки пустых строк при записи.
 		#если посетитель нажимает сабмит при незаполненных полях формы на /visit,		
-		hh ={   :new_user_name => 'Введите имя',
-				:new_user_phone => 'Введите номер телефона',
-				:new_user_datetime => 'Введите дату и время посещения'
+		hh ={   
+				:new_user_name => 'Введите Ваше имя',
+				:new_user_phone => 'Введите Ваш номер телефона',
+				:new_user_datetime => 'Введите дату и время посещения',
+				:barber => 'Выберите специалиста'
 			}
 		#то этот код проверяет, какие строки незаполнены 
 		#и выдает ошибку, равную значению для каждого поля.
@@ -95,6 +113,8 @@ post '/visit' do
 	erb "Уважаемый #{@new_user_name}, мы будем ждать Вас #{@new_user_datetime}!"
 
 end
+
+
 
 get '/login/form' do
 
@@ -131,17 +151,11 @@ end
 get '/showusers' do		
  
 	db = get_db
-	db.results_as_hash = true
+	
 	@results = db.execute 'select * from clients'
 	
 	erb :showusers
 	
-end
-
-get '/usersshow1' do
-  
-  erb "Hello World"
-  
 end
 
 get '/logout' do
