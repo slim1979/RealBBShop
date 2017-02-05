@@ -22,14 +22,15 @@
 		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя" value=<%= @new_user_name %>><br/>
 		<input type="text" class="form-control" name ="new_user_phone" placeholder="Введите номер телефона" value=<%= @new_user_phone %>><br/>
 		<input type="text" id="datetimepicker" class="form-control" name ="new_user_datetime" placeholder="Введите дату и время" value=<%= @new_user_datetime %>><br/>
-		<label>Выберите специалиста:</label>
+		<label>Выберите специалиста:</label>		
 		<select name="barber" class="form-control" >
-			<option <%= @barber == "Не важно" ? "selected" : "" %> >Не важно</option>
-			<option <%= @barber == "Катя" ? "selected" : "" %>>Катя</option>
-			<option <%= @barber == "Федя" ? "selected" : "" %>>Федя</option>
-			<option <%= @barber == "Оля" ? "selected" : "" %>>Оля</option>
-			<option <%= @barber == "Зина" ? "selected" : "" %>>Зина</option>
-			<option <%= @barber == "Игорь" ? "selected" : "" %>>Игорь</option>
+		
+		<% @barbers_list.each do |barber_from_db| %>
+			
+			<option <%= @barber_for_user == barber_from_db ['Name'] ? 'selected' : '' %>><%= barber_from_db ['Name'] %></option>
+			
+		<% end %>
+		
 		</select><br/>
 		<button type="submit" class="btn btn-success" >Записаться</button>
 		
