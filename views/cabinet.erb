@@ -9,5 +9,10 @@
 	   <blockquote>
 			<p> Доброго дня, <%= session[:identity] %> </p>
 			<p>Сегодня список клиентов <a href="/showusers">такой:</a></p>
-		
+			
+		<form action="/cabinet" method="POST" role="form">
+			<label>Введите имя нового сотрудника:</label>	
+			<input type="text" class="form-control" name ="new_barber" placeholder="Введите имя нового сотрудника"><br/>
+			<button type="submit" class="btn btn-success" >Добавить сотрудника</button>
+		</form>
 		</blockquote>
