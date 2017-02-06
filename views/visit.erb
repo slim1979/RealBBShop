@@ -18,10 +18,12 @@
 
 	<h4>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время визита</h4>
 	<form action="/visit" class="aaa" method="POST" onsubmit="fnc()" role="form">
-
+		<label>Введите Ваше имя:</label>	
 		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя" value=<%= @new_user_name %>><br/>
+		<label>Введите номер телефона:</label>	
 		<input type="text" class="form-control" name ="new_user_phone" placeholder="Введите номер телефона" value=<%= @new_user_phone %>><br/>
-		<input type="text" id="datetimepicker" class="form-control" name ="new_user_datetime" placeholder="Введите дату и время" value=<%= @new_user_datetime %>><br/>
+		<label>Выберите дату и время:</label>	
+		<input type="text" id="datetimepicker" class="form-control" name ="new_user_datetime" placeholder="Выберите дату и время" value=<%= @new_user_datetime %>><br/>
 		<label>Выберите специалиста:</label>		
 		<select name="barber" class="form-control" >
 		
